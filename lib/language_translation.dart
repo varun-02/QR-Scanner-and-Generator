@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:translator/translator.dart';
 
 class LanguageTranslationPage extends StatefulWidget {
@@ -11,6 +12,8 @@ class LanguageTranslationPage extends StatefulWidget {
 }
 
 class _LanguageTranslationPageState extends State<LanguageTranslationPage> {
+  FlutterTts ftts = FlutterTts();
+  var speak = 0;
   var languages = ['English', 'Hindi', 'Punjabi', 'Telugu'];
   var originLanguage = 'From';
   var destinationLanguage = 'To';
@@ -53,6 +56,7 @@ class _LanguageTranslationPageState extends State<LanguageTranslationPage> {
             children: [
               const SizedBox(height: 10),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   DropdownButton(
                     iconDisabledColor: Colors.white,
@@ -150,6 +154,24 @@ class _LanguageTranslationPageState extends State<LanguageTranslationPage> {
                   },
                   child: const Text('Translate'),
                 ),
+              ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: ElevatedButton(
+                    onPressed: () async {
+                      //your custom configuration
+
+                      await ftts.setLanguage('en-US');
+                      await ftts.setSpeechRate(0.5); //speed of speech
+                      await ftts.setVolume(1.0); //volume of speech
+                      await ftts.setPitch(1); //pitc of sound
+
+                      //play text to sp
+                      speak = 1;
+                      await ftts.speak('\n$output');
+                    },
+                    child: const Text("Text to Speech")),
               ),
               const SizedBox(height: 20),
               Text(
