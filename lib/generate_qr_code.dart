@@ -15,7 +15,11 @@ class _GenerateQRCodeState extends State<GenerateQRCode> {
   @override
   Widget build(context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('QR Code Scanner')),
+      backgroundColor: const Color(0xff10223d),
+      appBar: AppBar(
+        title: const Text('QR Code Scanner'),
+        backgroundColor: Colors.blue,
+      ),
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -43,7 +47,9 @@ class _GenerateQRCodeState extends State<GenerateQRCode> {
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  setState(() {});
+                  setState(() {
+                    FocusScope.of(context).unfocus();
+                  });
                   /*Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => QRImage(urlController)));*/
                 },

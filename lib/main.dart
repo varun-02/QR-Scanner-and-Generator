@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner_generator/generate_qr_code.dart';
+import 'package:qr_code_scanner_generator/language_translation.dart';
 import 'package:qr_code_scanner_generator/scan_qr_code.dart';
 
 void main() {
@@ -32,8 +33,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(context) {
     return Scaffold(
+      backgroundColor: const Color(0xff10223d),
       appBar: AppBar(
-        title: const Text('QR Code Scanner and Generator'),
+        title: const Text('Multifunctional App'),
         backgroundColor: Colors.blue,
       ),
       body: Center(
@@ -60,6 +62,18 @@ class _HomePageState extends State<HomePage> {
                 });
               },
               child: const Text('Generate QR Code'),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const LanguageTranslationPage()));
+                });
+              },
+              child: const Text('Language Translator'),
             ),
           ],
         ),
